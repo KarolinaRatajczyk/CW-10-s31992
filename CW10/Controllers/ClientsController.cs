@@ -7,17 +7,18 @@ namespace CW10.Controllers;
 [Route("api/clients")]
 public class ClientsController : ControllerBase
 {
-    private readonly IClientService _clientService;
+    private readonly ITripService _tripService;
 
-    public ClientsController(IClientService clientService)
+    public ClientsController(ITripService tripService)
     {
-        _clientService = clientService;
+        _tripService = tripService;
     }
 
+    // DELETE /api/clients/{idClient}
     [HttpDelete("{idClient}")]
     public async Task<IActionResult> DeleteClient(int idClient)
     {
-        var result = await _clientService.DeleteClientAsync(idClient);
+        var result = await _tripService.DeleteClientAsync(idClient);
 
         if (!result.IsSuccess)
             return BadRequest(result.Message);

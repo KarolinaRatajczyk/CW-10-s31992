@@ -16,21 +16,23 @@ public class TripsController : ControllerBase
         _tripService = tripService;
     }
 
+    // GET /api/trips?page=1&pageSize=10
     [HttpGet]
     public async Task<IActionResult> GetTrips([FromQuery] int page = 1, [FromQuery] int pageSize = 10)
     {
-        var trips = await _tripService.GetTripsAsync(page, pageSize);
-        return Ok(trips);
+        var result = await _tripService.GetTripsAsync(page, pageSize);
+        return Ok(result);
     }
 
+    // POST /api/trips/{idTrip}/clients
     [HttpPost("{idTrip}/clients")]
-    public async Task<IActionResult> AddClientToTrip(int idTrip, [FromBody] NewClientDto dto)
+    public async Task<IActionResult> AssignClientToTrip(int idTrip, [FromBody] NewClientDto dto)
     {
-        var result = await _tripService.AddClientToTripAsync(idTrip, dto);
+        var result = await _tripService.AssignClientToTripAsync(idTrip, dto);
 
         if (!result.IsSuccess)
             return BadRequest(result.Message);
 
-        return Ok();
+        return Ok(new { message = result.Message });
     }
 }
