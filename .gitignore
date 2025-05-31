@@ -404,3 +404,22 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+.idea/
+*.sln.DotSettings*
+*.user
+*.suo
+*.userosscache
+*.sln.cache
+*.sln.ide
+
+
+# OS X
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+# macOS specific files
+Icon?
+ehthumbs.db
+Thumbs.db
